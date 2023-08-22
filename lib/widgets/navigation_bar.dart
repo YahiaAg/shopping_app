@@ -4,12 +4,12 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import '../screens/cart_screen.dart';
 import '../screens/edit_product_screen.dart';
 import '../screens/user_products_screen.dart';
+  
 
 // ignore: must_be_immutable
 class MyGnavBar extends StatelessWidget {
   MyGnavBar({super.key, this.myIndex = 0});
   int myIndex;
-
   @override
   Widget build(BuildContext context) {
     return GNav(
