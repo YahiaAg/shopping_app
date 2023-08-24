@@ -17,17 +17,19 @@ class ProductsGrid extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       itemCount: products.length,
       itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
-            // builder: (c) => products[i],
-            value: products[i],//this line is very important!!!
-            child: const ProductItem(
-                // products[i].id,
-                // products[i].title,
-                // products[i].imageUrl,
-                ),
-          ),
+        key: ValueKey(products[i].id),
+        // builder: (c) => products[i],
+        value: products[i], //this line is very important!!!
+        child: ProductItem(
+          key: ValueKey(products[i].id),
+          // products[i].id,
+          // products[i].title,
+          // products[i].imageUrl,
+        ),
+      ),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 2/ 2.2,
+        childAspectRatio: 2 / 2.2,
         crossAxisSpacing: 15,
         mainAxisSpacing: 15,
       ),
