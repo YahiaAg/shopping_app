@@ -10,7 +10,7 @@ class ProductItem extends StatefulWidget {
   // final String title;
   // final String imageUrl;
 
-  ProductItem({super.key});
+  const ProductItem({super.key});
 
   @override
   State<ProductItem> createState() => _ProductItemState();

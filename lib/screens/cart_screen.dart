@@ -14,10 +14,9 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
-    final myIndex = ModalRoute.of(context)!.settings.arguments as int? ?? 0;
     return Scaffold(
       bottomNavigationBar: MyGnavBar(
-        myIndex: myIndex,
+        myIndex: 3,
       ),
       appBar: AppBar(
         title: const Text('Your Cart'),

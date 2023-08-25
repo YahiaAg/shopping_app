@@ -138,10 +138,9 @@ class EditProductScreenState extends State<EditProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final myIndex = ModalRoute.of(context)!.settings.arguments as int;
     return Scaffold(
       bottomNavigationBar: MyGnavBar(
-        myIndex: myIndex,
+        myIndex: 1,
       ),
       appBar: AppBar(
         title: const Text('Edit Product'),
