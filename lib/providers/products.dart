@@ -54,10 +54,15 @@ class Products with ChangeNotifier {
     return _items.where((prodItem) => prodItem.isFavorite).toList();
   }
 
-  Product findById(String? id) {
-    if (id == null) {
+  Product findById(String id) {
+    if (id == "") {
       return Product(
-          id: null, title: "", description: "", price: 0, imageUrl: "",isFavorite: false);
+          id: "",
+          title: "",
+          description: "",
+          price: 0,
+          imageUrl: "",
+          isFavorite: false);
     } else {
       return _items.firstWhere((prod) => prod.id == id);
     }
@@ -113,27 +118,30 @@ class Products with ChangeNotifier {
       );
       print("sucess");
       final newProduct = Product(
-        title: product.title,
-        description: product.description,
-        price: product.price,
-        imageUrl: product.imageUrl,
-        id: jsonDecode(response.body)['name'],
-        isFavorite: false 
-      );
+          title: product.title,
+          description: product.description,
+          price: product.price,
+          imageUrl: product.imageUrl,
+          id: jsonDecode(response.body)['name'],
+          isFavorite: false);
       _items.add(newProduct);
       // _items.insert(0, newProduct); // at the start of the list
       notifyListeners();
     } catch (error) {
       print("failed");
-    } 
+    }
   }
 
   Future<void> updateProduct(String id, Product newProduct) async {
     final prodIndex = _items.indexWhere((prod) => prod.id == id);
     if (prodIndex >= 0) {
-      final url = Uri.http('donation-project-d7244-default-rtdb.firebaseio.com',
-          '/products.json/$id.json');
+      final url = Uri.https(
+          "donation-project-d7244-default-rtdb.firebaseio.com",
+          '/products/$id.json');
       await http.patch(url,
+          headers: {
+            'Content-Type': 'application/json',
+          },
           body: jsonEncode({
             'title': newProduct.title,
             'description': newProduct.description,
@@ -142,13 +150,12 @@ class Products with ChangeNotifier {
           }));
       _items[prodIndex] = newProduct;
       notifyListeners();
-    } else {
     }
   }
 
   Future<void> deleteProduct(String id) async {
-    final url = Uri.http(
-        'donation-project-d7244-default-rtdb.firebaseio.com', '/products.json');
+    final url = Uri.https('donation-project-d7244-default-rtdb.firebaseio.com',
+        '/products/$id.json');
     final existingProductIndex = _items.indexWhere((prod) => prod.id == id);
     Product? existingProduct = _items[existingProductIndex];
     _items.removeAt(existingProductIndex);

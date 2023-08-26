@@ -54,14 +54,15 @@ class ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       bottomNavigationBar: MyGnavBar(
         myIndex: 0,
       ),
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColorLight,
-        title: const Text('MyShop'),
+        title: const Text(
+          'MyShop',
+        ),
         actions: <Widget>[
           PopupMenuButton(
             onSelected: (FilterOptions selectedValue) {

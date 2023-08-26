@@ -56,7 +56,7 @@ class _ProductItemState extends State<ProductItem> {
                   Icons.shopping_cart,
                 ),
                 onPressed: () {
-                  cart.addItem(product.id!, product.price, product.title);
+                  cart.addItem(product.id, product.price, product.title);
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text("that was added successfully!"),
                   ));
@@ -90,9 +90,11 @@ class _ProductItemState extends State<ProductItem> {
               },
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Image.network(
-                  product.imageUrl,
-                  fit: BoxFit.cover,
+                child: Hero(tag: product.id,
+                  child: Image.network(
+                    product.imageUrl,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
