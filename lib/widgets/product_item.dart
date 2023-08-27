@@ -90,7 +90,8 @@ class _ProductItemState extends State<ProductItem> {
               },
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Hero(tag: product.id,
+                child: Hero(
+                  tag: product.id,
                   child: Image.network(
                     product.imageUrl,
                     fit: BoxFit.cover,
@@ -139,6 +140,13 @@ class _HeartIconState extends State<HeartIcon>
       setState(() {});
     });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller!.dispose();
+    iconSize!.removeListener(() {});
+    super.dispose();
   }
 
   @override
