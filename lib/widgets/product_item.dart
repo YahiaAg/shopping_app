@@ -56,7 +56,7 @@ class _ProductItemState extends State<ProductItem> {
                   Icons.shopping_cart,
                 ),
                 onPressed: () {
-                  cart.addItem(product.id, product.price, product.title);
+                  cart.addItem(product.id, product.price, product.title, null);
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text("that was added successfully!"),
                   ));

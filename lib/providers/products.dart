@@ -1,10 +1,12 @@
-// ignore_for_file: avoid_print
-
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:mysql_client/mysql_client.dart';
+import 'package:dart_frog/dart_frog.dart';
+
 import '../models/http_exeption.dart';
 import './product.dart';
+import 'database.dart';
 
 class Products with ChangeNotifier {
   List<Product> _items = [
@@ -51,6 +53,7 @@ class Products with ChangeNotifier {
   }
 
   List<Product> get favoriteItems {
+
     return _items.where((prodItem) => prodItem.isFavorite).toList();
   }
 
@@ -79,11 +82,22 @@ class Products with ChangeNotifier {
   // }
 
   Future<void> fetchAndSetProducts() async {
+    var extractedData;
+    Database.makeConnection().then((_) async {
+      var connection = Database.connection;
+      var result = await connection!.execute("SELECT * FROM Products");
+      print("success");
+      for (final row in result.rows) {
+        print(row.colByName("Title"));//to verify that the data is fetched
+
+      }
+      extractedData=result.rows;
+    });
     final url = Uri.https(
         'donation-project-d7244-default-rtdb.firebaseio.com', '/products.json');
     try {
       final response = await http.Client().get(url);
-      final extractedData = jsonDecode(response.body) ?? {};
+       extractedData = jsonDecode(response.body) ?? {};
       final List<Product> loadedProducts = [];
       extractedData.forEach((prodId, prodData) {
         loadedProducts.add(Product(
@@ -103,6 +117,14 @@ class Products with ChangeNotifier {
   }
 
   Future<void> addProduct(Product product) async {
+    Database.makeConnection().then((_) async {
+      var connection = Database.connection;
+      await connection!.execute(
+        "INSERT INTO Products (Title, Price, Description, ImageURL) VALUES"
+        " ('${product.title}' , '${product.price}' , '${product.description}', '${product.imageUrl}')",
+      );
+      print("done");
+    });
     final url = Uri.https(
         "donation-project-d7244-default-rtdb.firebaseio.com", '/products.json');
     try {
@@ -133,6 +155,9 @@ class Products with ChangeNotifier {
   }
 
   Future<void> updateProduct(String id, Product newProduct) async {
+    Database.connection!.execute(
+      "UPDATE Products SET Title = '${newProduct.title}', Price = '${newProduct.price}', Description = '${newProduct.description}', ImageURL = '${newProduct.imageUrl}' WHERE ProductID = '$id'",
+    );
     final prodIndex = _items.indexWhere((prod) => prod.id == id);
     if (prodIndex >= 0) {
       final url = Uri.https(
@@ -154,6 +179,13 @@ class Products with ChangeNotifier {
   }
 
   Future<void> deleteProduct(String id) async {
+    Database.makeConnection().then((_) async {
+      var connection = Database.connection;
+      await connection!.execute(
+        "DELETE FROM Products WHERE ProductID = '$id'",
+      );
+      print("done");
+    });
     final url = Uri.https('donation-project-d7244-default-rtdb.firebaseio.com',
         '/products/$id.json');
     final existingProductIndex = _items.indexWhere((prod) => prod.id == id);

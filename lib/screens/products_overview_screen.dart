@@ -17,6 +17,8 @@ enum FilterOptions {
 
 class ProductsOverviewScreen extends StatefulWidget {
   const ProductsOverviewScreen({super.key});
+    static const routeName = '/product-overview-screen';
+
 
   @override
   ProductsOverviewScreenState createState() => ProductsOverviewScreenState();
@@ -42,6 +44,7 @@ class ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
       setState(() {
         _isLoading = true;
       });
+      
       Provider.of<Products>(context).fetchAndSetProducts().then((_) {
         setState(() {
           _isLoading = false;

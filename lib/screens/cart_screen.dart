@@ -37,7 +37,7 @@ class CartScreen extends StatelessWidget {
                   const Spacer(),
                   Chip(
                     label: Text(
-                      '\$${cart.totalAmount.toStringAsFixed(2)}',
+                      '${cart.totalAmount.toStringAsFixed(2)}DA',
                       style: TextStyle(
                         color: Theme.of(context)
                             .primaryTextTheme
@@ -53,6 +53,7 @@ class CartScreen extends StatelessWidget {
                       Provider.of<Orders>(context, listen: false).addOrder(
                         cart.items.values.toList(),
                         cart.totalAmount,
+                        null
                       );
                       cart.clear();
                     },
