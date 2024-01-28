@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "90202137155",
+    "firebase_url": "https://flutter-messenger-cloning-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "flutter-messenger-cloning",
+    "storage_bucket": "flutter-messenger-cloning.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90202137155:android:8fcf5264243bd094686af6",
+        "android_client_info": {
+          "package_name": "com.example.messenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90202137155-tpjodiu14s1gg65jt4c8oppteqjf8ktj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUb_UsqOHitP2eP0XgSwrhphdMK3vWr2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90202137155-8qaar8c69jhjoldulu75gh5h4rdb82il.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90202137155:android:22e1f69ab119ce2b686af6",
+        "android_client_info": {
+          "package_name": "com.example.shopapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90202137155-tpjodiu14s1gg65jt4c8oppteqjf8ktj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUb_UsqOHitP2eP0XgSwrhphdMK3vWr2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90202137155-8qaar8c69jhjoldulu75gh5h4rdb82il.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
